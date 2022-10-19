@@ -1,0 +1,106 @@
+<div class="mdk-drawer-layout js-mdk-drawer-layout" data-push="" data-responsive-width="992px" data-domfactory-upgraded="mdk-drawer-layout">
+    <div class="mdk-drawer-layout__content page" style="transform: translate3d(0px, 0px, 0px);">
+
+        <div class="container-fluid  page__heading-container">
+            <div class="page__heading">
+                <h1 class="m-0">Payout</h1>
+            </div>
+        </div>
+
+        <div class="container-fluid page__container">
+
+            <div class="card card-form">
+                <div class="row no-gutters">
+                    <div class="col-lg-4 card-body">
+                        <p><strong class="headings-color">Payout Account</strong></p>
+                        <p class="text-muted">Where we will send you the money.</p>
+                        <p class="text-muted">Package.</p>
+                    </div>
+                    <div class="col-lg-8 card-form__body card-body">
+                        <form>
+                            <div class="form-group d-flex flex-column">
+                                <img alt="PayPal Logo" src="./assets/paypal.svg" width="140">
+                                <div style="font-weight: bold;margin-bottom: 18px;">sb-1ua7o20581020@personal.example.com</div>
+                                <div style="font-weight: bold;margin-bottom: 18px;">{{package[0].name}} (${{package[0].amount}})</div>
+                                <div></div>
+                            </div>
+                            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                            <!--button type="submit" class="btn btn-success">Change</button-->
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--div class="card card-form">
+                <div class="row no-gutters">
+                    <div class="col-lg-4 card-body">
+                        <p><strong class="headings-color">Account</strong></p>
+                        <p class="text-muted">Set your account type &amp; details.</p>
+                    </div>
+                    <div class="col-lg-8 card-form__body card-body">
+                        <!--form-->
+                            <!--div class="form-group">
+                                <label>Account Type</label><br>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-light active">
+                                        <input type="radio" name="options" id="option1" checked=""> Individual
+                                    </label>
+                                    <label class="btn btn-light">
+                                        <input type="radio" name="options" id="option2"> Company
+                                    </label>
+                                </div>
+                            </div>
+                            <hr-->
+                            <!--div class="form-row">
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="payoutFirstName">First name</label>
+                                    <input id="fname" type="text" class="form-control" placeholder="First name" [(ngModel)]="userData.first_name">
+                                </div>
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="payoutLastName">Last name</label>
+                                    <input id="lname" type="text" class="form-control" placeholder="Last name" [(ngModel)]="userData.last_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" placeholder="username@example.com" [(ngModel)]="userData.email">
+                             </div>
+                             <div class="form-group">
+                                <label for="designation">Company Name</label>
+                                <input type="text" class="form-control" placeholder="" [(ngModel)]="userData.designation">
+                             </div>
+                             <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" class="form-control" placeholder="New Delhi, India" [(ngModel)]="userData.location">
+                             </div>
+                             <div class="form-group">
+                                <label for="country">Country</label><br>
+                                <select [(ngModel)]="userData.country" class="custom-select" style="width: auto;">
+                                   <option value="India">India</option>
+                                </select>
+                                <!--small class="form-text text-muted">The country is not visible to other users.</small-->
+                             <!--/div>
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" value="" id="payoutAgreeTerms" required="" checked="">
+                                    <label class="custom-control-label" for="payoutAgreeTerms">
+                                        Agree to terms and conditions
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="button" (click)="saveUser()">Submit</button>
+                        <!--/form-->
+                    <!--/div>
+                </div>
+            </div-->
+
+        </div>
+
+
+    </div>
+    <!-- // END drawer-layout__content -->
+
+    <app-footer></app-footer>
+    
+</div>
+<!-- // END drawer-layout -->

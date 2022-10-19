@@ -1,0 +1,175 @@
+<div class="mdk-drawer-layout js-mdk-drawer-layout" data-push="" data-responsive-width="992px" data-domfactory-upgraded="mdk-drawer-layout">
+    <div class="mdk-drawer-layout__content page" style="transform: translate3d(0px, 0px, 0px);">
+
+        <div class="container-fluid page__heading-container">
+            <div class="page__heading d-flex align-items-center">
+                <div class="flex">
+                    <h1 class="m-0">Documentation</h1>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container-fluid page__container">
+            <!-- content start -->
+            <div class="row">
+               <div class="col">
+                  <nav id="navbar">
+                     <ul class="nav flex-column">
+                        <header></header>
+                        <li class="nav-item">
+                           <a class="nav-link introduction" href="/documantation#Introduction">Introduction</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link layout" href="/documantation#GettingStarted">Getting Started</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link content" href="/documantation#Api">Api</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link components" href="/documantation#Jssdk">JavaScript SDK</a>
+                        </li>
+                        <!--li class="nav-item">
+                           <a class="nav-link reference" href="/documantation#Wordpress">Wordpress Plugin</a>
+                        </li-->
+                     </ul>
+                  </nav>
+               </div>
+               <div class="col-md-9">
+                  <main id="main-doc">
+                     <div class="head-box">
+                        <h1></h1>
+                     </div>
+                     <section class="main-section" id="Introduction">
+                        <header>
+                           <h2>Introduction</h2>
+                        </header>
+                        <article>
+                           <p>
+                              With Digiproof, you can timestamp your web content on polygon blockchain from the comfort of your site. No prior blockchain experience necessary. After the set-up, everything is taken care of automatically!
+                           </p>
+                           <p>Digiproof creates a unique and universal fingerprint (the ‘hash’) for all your posts, pages and media files. If the input changes, the hash becomes totally different.</p>
+                           <p>This hash is added to the blockchain with a date and time. Because you (the website owner) have the input that results in this specific hash, you can prove that you published the content at that point in time.</p>
+                        </article>
+                     </section>
+                     <hr>
+                     <section class="main-section" id="GettingStarted">
+                        <header>
+                           <!--h2>Code Guide</h2-->
+                        </header>
+                        <article>
+                           <h3>Getting Started</h3>
+                           <p>To get started you will need the api key.</p>
+                           <pre>
+                              <code>
+                                 {{username}}</code>
+                           </pre>
+                           <p>Go to home page and add a website.</p>
+                           <p>Then grab your web key for your website you added on the dashboard/home page.</p>
+                          <img style="width: 700px;" src="assets/doc_image1.png">
+                           <p>Now you are ready to implement the sdk and the api into the website.</p>
+                           
+                          
+                        </article>
+                     </section>
+                     <hr>
+                     <section class="main-section" id="Api">
+                        <header>
+                           <h2></h2>
+                        </header>
+                        <article>
+                           <h3>API Guide</h3>
+                           <p>Digiproof Rest API help you to proofstamp your assets with just a single Api call</p>
+                           <h4>Curl Example (Javascript)</h4>
+                           <pre>
+         <code>
+            var settings = {{ '{' }}
+               "async": true,
+               "crossDomain": true,
+               "url": "http://domain:8000/mint_assets",
+               "method": "POST",
+               "headers": {{ '{' }}
+                 "content-type": "application/x-www-form-urlencoded",
+                 "cache-control": "no-cache",
+                 "postman-token": "67abf9b3-52ea-038e-88e9-34afe75f5ca8"
+               {{ '}' }},
+               "data": {{ '{' }}
+                 "title": "Article title",
+                 "body": "Article content",
+                 "url": "Article url", //optional
+                 "domain": "Domain name", //optional
+                 "key": "Your key",
+                 "webkey": "Your Web key"
+               {{ '}' }}
+            {{ '}' }}
+             
+             $.ajax(settings).done(function (response) {{ '{' }}
+                  console.log(response);
+            {{ '}' }});</code>
+         </pre>
+                        </article>
+                     </section>
+                     <hr>
+                     <section class="main-section" id="Jssdk">
+                        <header>
+                           <h2></h2>
+                        </header>
+                        <article>
+                           <h3>Javasctipt SDK</h3>
+                           <p>Javascript SDK help you to implement the frontend popup, allow visitors to view the profstamped details on blockchain for that article.</p>
+                           <p>To implement the SDK just add the digiproof SDK into your webpage</p>
+                           <pre>
+         <code>
+            &lt;script src="https://domain/digiproof.min.js">
+         </code>
+         </pre>
+                           <p>Then add the digiproof tag just before your &lt;/body> tag of the webpage or at the bottom of the webpage</p>
+                           <pre>
+         <code>
+         &lt;digi-poroof key="api key" webkey="website key"></code>
+         </pre>
+                        </article>
+                     </section>
+                   
+                  </main>
+                  <hr>
+               </div>
+            </div>
+            <style>
+               section article {
+               padding-right: 20px;
+               }
+               article li {
+               font-size: 80%;
+               margin-left: 20px;
+               }
+               /*---CODE SECTION---*/
+               pre {
+               display: inline-block;
+               background-color: #34495e;
+               color: #fff;
+               margin-left: 40px;
+               padding: 0 0 20px 30px;
+               font-size: 80%;
+               width: 90%;
+               white-space: pre-line;
+               }
+               /*-------FOOTER------*/
+               hr {
+               border: 0.5px solid;
+               color: #34495e;
+               }
+               a {
+               color: #8e44ad;
+               font-weight: bold;
+               }
+            </style>
+            <!-- content end -->
+         </div>
+
+    </div>
+    <!-- // END drawer-layout__content -->
+    <app-footer></app-footer>
+                    
+</div>
+<!-- // END drawer-layout -->

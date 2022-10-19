@@ -1,0 +1,213 @@
+<div class="mdk-drawer-layout js-mdk-drawer-layout" data-push="" data-responsive-width="992px" data-domfactory-upgraded="mdk-drawer-layout">
+    <div class="mdk-drawer-layout__content page" style="transform: translate3d(0px, 0px, 0px);">
+
+        <div style="padding-bottom: calc(5.125rem / 2); position: relative; margin-bottom: 1.5rem;">
+            <div class="bg-primary" style="min-height: 150px;">
+                <div class="d-flex align-items-end container-fluid page__container" style="position: absolute; left: 0; right: 0; bottom: 0;">
+                    <div class="avatar avatar-xl">
+                        <!--img src="./Profile_files/demi.png" alt="avatar" class="avatar-img rounded" style="border: 2px solid white;"-->
+                    </div>
+                    <div class="card-header card-header-tabs-basic nav flex" role="tablist">
+                        <a href="javascript:void(0)" (click)="showActivity()" class="active show" data-toggle="tab" role="tab" aria-selected="true">Activity</a>
+                        <a href="javascript:void(0)" (click)="showWallet()" data-toggle="tab" role="tab" aria-selected="false">Wallet</a>
+                        <a href="javascript:void(0)" (click)="showPurchase()" data-toggle="tab" role="tab" aria-selected="false">Purchases</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid page__container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h1 class="h4 mb-1">{{userData.first_name}}</h1>
+                    <p class="text-success">{{userData.membership}}</p>
+                    <p>{{userData.designation}}</p>
+                    <div class="text-muted d-flex align-items-center">
+                        <i class="material-icons mr-1">location_on</i>
+                        <div class="flex">{{userData.location}}</div>
+                    </div>
+                    <!--div class="text-muted d-flex align-items-center">
+                        <i class="material-icons mr-1">link</i>
+                        <div class="flex"><a href="https://www.frontted.com/">frontted.com</a></div>
+                    </div-->
+                </div>
+                <!-- profile -->
+                <div class="col-lg-9 card-form__body card-body profile" *ngIf="showProfile">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="activity">
+                           <div class="row">
+                              <div class="col">
+                                 <div class="form-group">
+                                    <label for="fname">First name</label>
+                                    <input id="fname" type="text" class="form-control" placeholder="First name" [(ngModel)]="userData.first_name">
+                                 </div>
+                              </div>
+                              <div class="col">
+                                 <div class="form-group">
+                                    <label for="lname">Last name</label>
+                                    <input id="lname" type="text" class="form-control" placeholder="Last name" [(ngModel)]="userData.last_name">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label for="desc">Bio / Description</label>
+                              <textarea [(ngModel)]="userData.bio" rows="4" class="form-control" placeholder="Bio / description ..."></textarea>
+                           </div>
+                           <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="email" class="form-control" placeholder="username@example.com" [(ngModel)]="userData.email">
+                           </div>
+                           <div class="form-group">
+                              <label for="designation">Company Name</label>
+                              <input type="text" class="form-control" placeholder="" [(ngModel)]="userData.designation">
+                           </div>
+                           <div class="form-group">
+                              <label for="location">Location</label>
+                              <input type="text" class="form-control" placeholder="New Delhi, India" [(ngModel)]="userData.location">
+                           </div>
+                           <div class="form-group">
+                              <label for="country">Country</label><br>
+                              <select [(ngModel)]="userData.country" class="custom-select" style="width: auto;">
+                                 <option *ngFor="let ctry of country" value="{{ctry.name}}">{{ctry.name}}</option>
+                              </select>
+                              <small class="form-text text-muted">The country is not visible to other users.</small>
+                           </div>
+                           <div class="form-group">
+                              <div>
+                                 <input type="button" class="btn btn-success ml-1" value="Save" (click)="saveUser()">
+                              </div>
+                           </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- profile -->
+                 <!-- wallet -->
+                 <div class="col-lg-9 card-form__body card-body profile" *ngIf="showWallets">
+                  <div class="tab-content">
+                      <div class="tab-pane active" id="activity">
+                         <div class="row">
+                           <div class="container-fluid page__heading-container">
+                              <div class="d-flex align-items-center">
+                                 <div class="flex">
+                                    
+                                 </div>
+                                 <button class="btn btn-sm btn-success ml-1 align-items-end" data-toggle="modal" data-target="#modal-wallet" style="float:right;">Add Your Wallet</button>
+                              </div>
+                           </div>
+                           
+                          <div class="card p-3 mb-3" *ngFor="let wallet of wallets.accounts; let i = index">
+                              <div class="d-flex">
+                                 <div class="flex-fill d-flex">
+                                    <!--div class="avatar avatar-md mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Luke P.">
+                                       <img src="./home_files/256_luke-porter-261779-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                       </div-->
+                                    <div class="flex-fill">
+                                       <div class="d-flex mb-2">
+                                          <span *ngIf="i==0" class="badge badge-purple badge-pill mr-1"><img style="width: 18px;margin-right: 8px;" src="assets/Ethereum-ETH-icon.png"> 223 Labs</span>
+                                          <span *ngIf="i>0" class="badge badge-purple badge-pill mr-1"><img style="width: 18px;margin-right: 8px;" src="assets/metamask_icon.png"> Metamask</span>
+                                       </div>
+                                       <div class="mb-2">
+                                       <div class="text-muted">{{wallet}}</div>
+                                    </div>
+               
+                                 </div>
+                                 </div>
+                                 <div class="col-md-4 d-flex justify-content-md-end" style="min-width: 200px;">
+                                    <button *ngIf="wallet==wallets.ethAddress" class="btn btn-sm btn-success mr-2" style="height: 23px;" type="button">
+                                       <span>Primary</span>
+                                    </button>
+                                    <button *ngIf="wallet!=wallets.ethAddress" (click)="updateWallet(wallet)" class="btn btn-sm btn-primary mr-2" style="height: 23px;" type="button">
+                                       <span>Make Primary</span>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger mr-3" (click)="deleteWallet(wallet)" style="height: 23px;">
+                                       <i class="material-icons">delete</i>
+                                    </button>
+                                    <sup><i *ngIf="wallet==wallets.ethAddress" class="pointer" title="All your minted assets will be stored in this wallet address." class="material-icons" style="font-size: 20px;color: #00a1c7bd;position: absolute;">info</i></sup>
+                                 </div>
+                                 <div class="text-muted"></div>
+                              </div>
+                           </div>
+
+                         </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- wallet -->
+                <!-- purchaces -->
+                <div class="col-lg-9 card-form__body card-body purchaces" *ngIf="showPurchas">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="activity">
+                           <table class="table table-striped border-bottom mb-0">
+                               <tbody *ngFor="let order of orders">
+                                  <tr>
+                                     <td style="width: 40px;">1.</td>
+                                     <td>
+                                        <div>
+                                           <a href="#" class="text-15pt d-flex align-items-center"><strong>#{{order.order_id}}</strong></a>
+                                        </div>
+                                        <small class="text-muted">({{order.expire_date}})</small>
+                                     </td>
+                                     <td>
+                                     </td>
+                                     
+                                     <td class="text-right" style="width: 60px">
+                                        <div class="badge badge-soft-success">{{order.purchase_units[0].description}}</div>
+                                     </td>
+                                     <td class="text-right" style="width: 60px">
+                                        <!--div class="badge badge-success">Download Invoice</div-->
+                                     </td>
+                                     <td class="text-right" style="width: 80px">
+                                        ${{order.purchase_units[0].amount.value}}
+                                     </td>
+                                  </tr>
+                               </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- purchaces -->
+            </div>
+        </div>
+
+    </div>
+    <!-- // END drawer-layout__content -->
+
+    <app-footer></app-footer>
+     <!-- Modal -->
+     <div id="modal-wallet" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="d-flex" style="float: right;">
+               <button type="button"
+                    class="btn btn-close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    style="font-size: 1.5rem;"
+                  ><span aria-hidden="true">&times;</span></button>
+             </div>
+              <div class="modal-body">
+                  <div class="px-3">
+                      <div class="d-flex justify-content-center mt-2 mb-4 navbar-light">
+                          <a href="#" class="navbar-brand" style="min-width: 0">
+                              <!--img class="navbar-brand-icon" src="./Modals_files/stack-logo-blue.svg" width="25" alt="FlowDash"-->
+                              <span>Add your wallet</span>
+                          </a>
+                      </div>
+                      <div class="row" style="text-align: center;">
+                        <div class="col-md-6">
+                           <img (click)="addWallet()" class="pointer" style="width: 120px;" src="assets/metamask.png">
+                           <p style="margin: 1rem;font-weight: 500;">Metamask</p>
+                        </div>
+                        <div class="col-md-6">
+                           <img style="width: 60px;" class="pointer" src="assets/Wallet.svg">
+                           <p style="margin: 1rem;font-weight: 500;">Wallet Connect</p>
+                        </div>
+                      </div>
+                  </div>
+              </div> <!-- // END .modal-body -->
+          </div> <!-- // END .modal-content -->
+      </div> <!-- // END .modal-dialog -->
+  </div> <!-- // END .modal -->
+</div>
+<!-- // END drawer-layout -->

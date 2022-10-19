@@ -1,0 +1,344 @@
+<div class="mdk-drawer-layout js-mdk-drawer-layout" data-push="" data-responsive-width="992px" data-domfactory-upgraded="mdk-drawer-layout">
+    <div class="mdk-drawer-layout__content page" style="transform: translate3d(0px, 0px, 0px);">
+
+        <div class="container-fluid page__heading-container">
+            <div class="page__heading d-flex align-items-end">
+                <div class="flex">
+                    <h1 class="m-0">Analytics</h1>
+                </div>
+                <div class="flatpickr-wrapper ml-3">
+                    <!--div id="recent_orders_date" data-toggle="flatpickr" data-flatpickr-wrap="true" data-flatpickr-mode="range" data-flatpickr-alt-format="d/m/Y" data-flatpickr-date-format="d/m/Y">
+                        <a href="javascript:void(0)" class="link-date" data-toggle="">27/06/2022 to 27/07/2022</a>
+                        <input class="flatpickr-hidden-input flatpickr-input" type="hidden" value="27/06/2022 to 27/07/2022" data-input=""><input class="form-control flatpickr-input" placeholder="" tabindex="0" type="text" readonly="readonly">
+                    </div-->
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid page__container">
+            
+            <div class="card card-form d-flex flex-column flex-sm-row">
+                <div class="card-form__body card-body-form-group flex">
+                    <div class="row">
+                        <div class="col-md-6">
+                           <div class="d-flex align-items-center">
+                                <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+                                <label class="btn btn-light">
+                                    <input type="radio" name="options" (click)="dailyData()" checked=""> Daily </label>
+                                <label class="btn btn-light">
+                                    <input type="radio" name="options" (click)="weekData()">  Weekly </label>
+                                <label class="btn btn-light">
+                                    <input type="radio" name="options" (click)="monthData()"> Monthly </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <input type="text" ngxDaterangepickerMd 
+                            startKey="start"
+                            endKey="end"
+                            placeholder="{{startDate}} - {{endDate}}" 
+                            name="daterange"
+                            (datesUpdated)="datesUpdated($event)"
+                            class="form-control" 
+                            readonly/>
+                        </div>
+                    </div>
+                </div>
+                <!--button class="btn bg-white border-left border-top border-top-sm-0 rounded-top-0 rounded-top-sm rounded-left-sm-0"><i class="material-icons text-primary icon-20pt">refresh</i></button-->
+            </div>
+            
+           
+            <div class="row card-group-row">
+                <div class="col-lg-4 col-md-12 card-group-row__col">
+                    <div class="card card-group-row__card">
+                        <div class="card-body d-flex flex-row align-items-center flex-0">
+                            <div class="flex">
+                                <div class="card-header__title mb-2">Total Proofstamping</div>
+                                <div class="text-amount">{{totalproofstamp}}</div>
+                            </div>
+                            <div class="ml-3 d-flex flex-column align-items-end text-right">
+                                <div *ngIf="totalproofstampper >= 0" class="text-stats text-success">{{totalproofstampper}}% <i class="material-icons">arrow_upward</i></div>
+                                <div *ngIf="totalproofstampper < 0" class="text-stats text-danger">{{totalproofstampper}}% <i class="material-icons">arrow_downward</i></div>
+                            </div>
+                        </div>
+                        <div class="card-body text-muted flex d-flex align-items-center">
+                            <div class="chart w-100" style="height: 200px;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                <canvas #ngChartjs="ngChartjs" ngChartjs style="display: block; width: 283px; height: 200px;" class="chartjs-render-monitor"
+                                 [datasets]="lineChartData" 
+                                 [labels]="lineChartLabels"
+                                 [options]="lineChartOptions" 
+                                 [colors]="lineChartColors" 
+                                 [legend]="lineChartLegend"
+                                 [chartType]="lineChartType"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 card-group-row__col">
+                    <div class="card card-group-row__card">
+                        <div class="card-body d-flex flex-row align-items-center flex-0 border-bottom">
+                            <div class="flex">
+                                <div class="card-header__title mb-2">Total Clicks</div>
+                                <div class="text-amount">{{totalClicks}}</div>
+                            </div>
+                            <div class="ml-3 d-flex flex-column align-items-end text-right">
+                                <div *ngIf="totalClicksper >= 0" class="text-stats text-success">{{totalClicksper}}% <i class="material-icons">arrow_upward</i></div>
+                                <div *ngIf="totalClicksper < 0" class="text-stats text-danger">{{totalClicksper}}% <i class="material-icons">arrow_downward</i></div>
+                            </div>
+                        </div>
+                        <!--div class="card-body flex-0">
+                            <small class="d-flex align-items-center font-weight-bold text-muted mb-1">
+                                <span class="flex text-body">Online Store</span>
+                                <span class="mx-3">$50.99</span>
+                                <span class="d-flex align-items-center"><i class="material-icons text-success icon-16pt mr-1">arrow_upward</i> 3.2%</span>
+                            </small>
+                            <small class="d-flex align-items-center font-weight-bold text-muted">
+                                <span class="flex text-body">Facebook</span>
+                                <span class="mx-3">$32.00</span>
+                                <span class="d-flex align-items-center"><i class="material-icons text-danger icon-16pt mr-1">arrow_downward</i> 7.0%</span>
+                            </small>
+                        </div-->
+                        <div class="card-body text-muted flex d-flex align-items-center">
+                            <div class="chart w-100" style="height: 200px;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                            <canvas #ngChartjs="ngChartjs" ngChartjs style="display: block; width: 283px; height: 200px;" class="chartjs-render-monitor"
+                            [datasets]="clickChartData" 
+                            [labels]="clickChartLabels"
+                            [options]="lineChartOptions" 
+                            [colors]="lineChartColors" 
+                            [legend]="lineChartLegend"
+                            [chartType]="lineChartType"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 card-group-row__col">
+                    <div class="card card-group-row__card">
+                        <div class="card-body d-flex flex-row align-items-center flex-0 border-bottom">
+                            <div class="flex">
+                                <div class="card-header__title mb-2">Total Unique visitors</div>
+                                <div class="text-amount">{{totalViews}}</div>
+                            </div>
+                            <div class="ml-3 d-flex flex-column align-items-end text-right">
+                                <div *ngIf="totalViewsper >= 0" class="text-stats text-success">{{totalViewsper}}% <i class="material-icons">arrow_upward</i></div>
+                                <div *ngIf="totalViewsper < 0" class="text-stats text-danger">{{totalViewsper}}% <i class="material-icons">arrow_downward</i></div>
+                            </div>
+                        </div>
+                        <div class="card-body text-muted flex d-flex align-items-center">
+                            <div class="chart w-100" style="height: 250px;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                            <canvas #ngChartjs="ngChartjs" ngChartjs style="display: block; width: 283px; height: 200px;" class="chartjs-render-monitor"
+                            [datasets]="visitChartData" 
+                            [labels]="visitChartLabels"
+                            [options]="lineChartOptions" 
+                            [colors]="lineChartColors" 
+                            [legend]="lineChartLegend"
+                            [chartType]="lineChartType"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+
+            <!--div class="row">
+                <div class="col-lg-8">
+
+                    <div class="card">
+                        <div class="card-header bg-white d-flex align-items-center">
+                            <h4 class="card-header__title flex m-0">Current Sales</h4>
+                            <div class="flatpickr-wrapper"><div data-toggle="flatpickr" data-flatpickr-wrap="true" data-flatpickr-static="true" data-flatpickr-mode="range" data-flatpickr-alt-format="d/m/Y" data-flatpickr-date-format="d/m/Y">
+                                <a href="javascript:void(0)" class="link-date" data-toggle="">13/03/2018 <span class="text-muted mx-1">to</span> 20/03/2018</a>
+                                <input class="flatpickr-hidden-input flatpickr-input" type="hidden" value="13/03/2018 to 20/03/2018" data-input="">
+                            </div><input class="form-control flatpickr-input" placeholder="" tabindex="0" type="text" readonly="readonly"><div class="flatpickr-calendar rangeMode animate static" tabindex="-1"><div class="flatpickr-months"><span class="flatpickr-prev-month"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17"><g></g><path d="M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z"></path></svg></span><div class="flatpickr-month"><div class="flatpickr-current-month"><span class="cur-month">March </span><div class="numInputWrapper"><input class="numInput cur-year" type="number" tabindex="-1" aria-label="Year"><span class="arrowUp"></span><span class="arrowDown"></span></div></div></div><span class="flatpickr-next-month"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17"><g></g><path d="M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z"></path></svg></span></div><div class="flatpickr-innerContainer"><div class="flatpickr-rContainer"><div class="flatpickr-weekdays"><div class="flatpickr-weekdaycontainer">
+<span class="flatpickr-weekday">
+Sun</span><span class="flatpickr-weekday">Mon</span><span class="flatpickr-weekday">Tue</span><span class="flatpickr-weekday">Wed</span><span class="flatpickr-weekday">Thu</span><span class="flatpickr-weekday">Fri</span><span class="flatpickr-weekday">Sat
+</span>
+</div></div><div class="flatpickr-days" tabindex="-1"><div class="dayContainer"><span class="flatpickr-day prevMonthDay" aria-label="February 25, 2018" tabindex="-1">25</span><span class="flatpickr-day prevMonthDay" aria-label="February 26, 2018" tabindex="-1">26</span><span class="flatpickr-day prevMonthDay" aria-label="February 27, 2018" tabindex="-1">27</span><span class="flatpickr-day prevMonthDay" aria-label="February 28, 2018" tabindex="-1">28</span><span class="flatpickr-day " aria-label="March 1, 2018" tabindex="-1">1</span><span class="flatpickr-day " aria-label="March 2, 2018" tabindex="-1">2</span><span class="flatpickr-day " aria-label="March 3, 2018" tabindex="-1">3</span><span class="flatpickr-day " aria-label="March 4, 2018" tabindex="-1">4</span><span class="flatpickr-day " aria-label="March 5, 2018" tabindex="-1">5</span><span class="flatpickr-day " aria-label="March 6, 2018" tabindex="-1">6</span><span class="flatpickr-day " aria-label="March 7, 2018" tabindex="-1">7</span><span class="flatpickr-day " aria-label="March 8, 2018" tabindex="-1">8</span><span class="flatpickr-day " aria-label="March 9, 2018" tabindex="-1">9</span><span class="flatpickr-day " aria-label="March 10, 2018" tabindex="-1">10</span><span class="flatpickr-day " aria-label="March 11, 2018" tabindex="-1">11</span><span class="flatpickr-day " aria-label="March 12, 2018" tabindex="-1">12</span><span class="flatpickr-day selected startRange" aria-label="March 13, 2018" tabindex="-1">13</span><span class="flatpickr-day inRange" aria-label="March 14, 2018" tabindex="-1">14</span><span class="flatpickr-day inRange" aria-label="March 15, 2018" tabindex="-1">15</span><span class="flatpickr-day inRange" aria-label="March 16, 2018" tabindex="-1">16</span><span class="flatpickr-day inRange" aria-label="March 17, 2018" tabindex="-1">17</span><span class="flatpickr-day inRange" aria-label="March 18, 2018" tabindex="-1">18</span><span class="flatpickr-day inRange" aria-label="March 19, 2018" tabindex="-1">19</span><span class="flatpickr-day selected endRange" aria-label="March 20, 2018" tabindex="-1">20</span><span class="flatpickr-day " aria-label="March 21, 2018" tabindex="-1">21</span><span class="flatpickr-day " aria-label="March 22, 2018" tabindex="-1">22</span><span class="flatpickr-day " aria-label="March 23, 2018" tabindex="-1">23</span><span class="flatpickr-day " aria-label="March 24, 2018" tabindex="-1">24</span><span class="flatpickr-day " aria-label="March 25, 2018" tabindex="-1">25</span><span class="flatpickr-day " aria-label="March 26, 2018" tabindex="-1">26</span><span class="flatpickr-day " aria-label="March 27, 2018" tabindex="-1">27</span><span class="flatpickr-day " aria-label="March 28, 2018" tabindex="-1">28</span><span class="flatpickr-day " aria-label="March 29, 2018" tabindex="-1">29</span><span class="flatpickr-day " aria-label="March 30, 2018" tabindex="-1">30</span><span class="flatpickr-day " aria-label="March 31, 2018" tabindex="-1">31</span><span class="flatpickr-day nextMonthDay" aria-label="April 1, 2018" tabindex="-1">1</span><span class="flatpickr-day nextMonthDay" aria-label="April 2, 2018" tabindex="-1">2</span><span class="flatpickr-day nextMonthDay" aria-label="April 3, 2018" tabindex="-1">3</span><span class="flatpickr-day nextMonthDay" aria-label="April 4, 2018" tabindex="-1">4</span><span class="flatpickr-day nextMonthDay" aria-label="April 5, 2018" tabindex="-1">5</span><span class="flatpickr-day nextMonthDay" aria-label="April 6, 2018" tabindex="-1">6</span><span class="flatpickr-day nextMonthDay" aria-label="April 7, 2018" tabindex="-1">7</span></div></div></div></div></div></div>
+                        </div>
+                        <div class="card-body text-muted">
+                            <div class="chart" style="height: calc(248px);"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                <canvas id="earningsTrafficChart" width="638" height="248" style="display: block; width: 638px; height: 248px;" class="chartjs-render-monitor">
+                                    <span style="font-size: 1rem;"><strong>Website Traffic / Earnings</strong> area chart goes here.</span>
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="card">
+                        <div class="card-header bg-white">
+                            <h4 class="card-header__title m-0">History</h4>
+                        </div>
+                        <div class="card-body py-4">
+
+                            <div class="d-flex justify-content-between pb-1">
+                                <span>January</span>
+                                <div>
+                                    <strong>$10,000</strong> <span class="text-muted">/ $20,000</span>
+                                </div>
+                            </div>
+                            <div class="progress mb-3" style="height: 8px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 52%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                            <div class="d-flex justify-content-between pb-1">
+                                <span>February</span>
+                                <div>
+                                    <strong>$8,250</strong> <span class="text-muted">/ $5,230</span>
+                                </div>
+                            </div>
+                            <div class="progress mb-3" style="height: 8px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                            <div class="d-flex justify-content-between pb-1">
+                                <span>March</span>
+                                <div>
+                                    <strong>$1,150</strong> <span class="text-muted">/ $8,120</span>
+                                </div>
+                            </div>
+                            <div class="progress mb-3" style="height: 8px;">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 22%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                            <div class="d-flex justify-content-between pb-1">
+                                <span>April</span>
+                                <div>
+                                    <strong>$4,625</strong> <span class="text-muted">/ $11,450</span>
+                                </div>
+                            </div>
+                            <div class="progress mb-3" style="height: 8px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                            <div class="d-flex justify-content-between pb-1">
+                                <span>May</span>
+                                <div>
+                                    <strong>$5,875</strong> <span class="text-muted">/ $12,600</span>
+                                </div>
+                            </div>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 45%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div-->
+
+            <!--div class="row card-group-row">
+                <div class="col-lg-4 col-md-6 card-group-row__col">
+                    <div class="card card-group-row__card">
+                        <div class="card-body d-flex flex-row align-items-center flex-0">
+                            <div class="flex">
+                                <div class="card-header__title mb-2">Total orders</div>
+                                <div class="text-amount">4</div>
+                            </div>
+                            <div class="ml-3 d-flex flex-column align-items-end text-right">
+                                <div class="text-stats text-success">92% <i class="material-icons">arrow_upward</i></div>
+                            </div>
+                        </div>
+                        <div class="card-body text-muted flex d-flex align-items-center">
+                            <div class="chart w-100" style="height: 200px;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                <canvas id="totalOrdersChart" width="283" height="200" style="display: block; width: 283px; height: 200px;" class="chartjs-render-monitor">
+                                    <span style="font-size: 1rem;"><strong>Total Orders</strong> chart goes here.</span>
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 card-group-row__col">
+                    <div class="card card-group-row__card">
+                        <div class="card-body d-flex flex-row align-items-center flex-0">
+                            <div class="flex">
+                                <div class="card-header__title mb-2">Conversion rate</div>
+                                <div class="text-amount">5.63%</div>
+                            </div>
+                            <div class="ml-3 d-flex flex-column align-items-end text-right">
+                                <div class="text-stats text-success">3.6% <i class="material-icons">arrow_upward</i></div>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <small class="text-muted text-uppercase mb-3 d-block font-weight-bold">Conversion Funnel</small>
+                            <small class="d-flex align-items-start font-weight-bold text-muted mb-2">
+                                <span class="flex d-flex flex-column">
+                                    <span class="text-body">Added to cart</span>
+                                    5 visits
+                                </span>
+                                <span class="mx-3">7.04%</span>
+                                <span class="d-flex align-items-center"><i class="material-icons text-success icon-16pt mr-1">arrow_upward</i> 4.0%</span>
+                            </small>
+                            <small class="d-flex align-items-start font-weight-bold text-muted mb-2">
+                                <span class="flex d-flex flex-column">
+                                    <span class="text-body">Reached checkout</span>
+                                    5 visits
+                                </span>
+                                <span class="mx-3">7.04%</span>
+                                <span class="d-flex align-items-center"><i class="material-icons text-success icon-16pt mr-1">arrow_upward</i> 2.0%</span>
+                            </small>
+                            <small class="d-flex align-items-start font-weight-bold text-muted">
+                                <span class="flex d-flex flex-column">
+                                    <span class="text-body">Purchased</span>
+                                    4 orders
+                                </span>
+                                <span class="mx-3">5.63%</span>
+                                <span class="d-flex align-items-center"><i class="material-icons text-success icon-16pt mr-1">arrow_upward</i> 1.4%</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 card-group-row__col">
+                    <div class="card card-group-row__card">
+                        <div class="card-body d-flex flex-row align-items-center flex-0 border-bottom">
+                            <div class="flex">
+                                <div class="card-header__title mb-2">Repeat customer</div>
+                                <div class="text-amount">5.43%</div>
+                            </div>
+                            <div class="ml-3 d-flex flex-column align-items-end text-right">
+                                <div class="text-stats text-success">2.6% <i class="material-icons">arrow_upward</i></div>
+                            </div>
+                        </div>
+                        <div class="card-body text-muted flex d-flex align-items-center">
+                            <div class="chart w-100" style="height: 250px;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                <canvas id="repeatCustomerRateChart" width="283" height="250" style="display: block; width: 283px; height: 250px;" class="chartjs-render-monitor">
+                                    <span style="font-size: 1rem;"><strong>Repeat Customer Rate</strong> chart goes here.</span>
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div-->
+
+            <div class="row">
+                <div class="col-lg-12 card-form__body">
+
+                        <div class="table-responsive border-bottom" data-toggle="lists" data-lists-values="[&quot;js-lists-values-employee-name&quot;]">
+
+                            <!-- AG Grid Angular Component -->
+                        <ag-grid-angular
+                        style="width: 100%; height: 500px"
+                        class="ag-theme-alpine"
+                        [columnDefs]="columnDefs"
+                        [defaultColDef]="defaultColDef"
+                        [rowData]="rowData"
+                        [animateRows]="true"
+                        [paginationAutoPageSize]="true"
+                        [pagination]="true"
+                        ></ag-grid-angular>
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- // END drawer-layout__content -->
+    <app-footer></app-footer>
+                    
+</div>
+<!-- // END drawer-layout -->

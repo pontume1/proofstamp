@@ -1,0 +1,28 @@
+.page__container, .nav-link, h2, h3, h4 {
+    line-height: 30px;
+    letter-spacing: 0.005em;
+    color: rgb(74, 74, 74);
+    font-family: Lato, sans-serif;
+    word-spacing: 1px;
+    text-align: justify;
+}
+
+.nav-link{
+    color:#8e44ad;
+}
+
+.page__container, .nav-link{
+    font-size: 20px;
+}
+
+h2 {
+    font-size: 35px;
+}
+
+h3 {
+    font-size: 30px;
+}
+
+h4{
+    font-size: 25px;
+}

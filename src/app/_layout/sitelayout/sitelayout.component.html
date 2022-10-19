@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Activities</title>
+      <!-- Prevent the demo from appearing in search engines -->
+      <meta name="robots" content="noindex">
+   </head>
+   <body class="layout-default has-drawer-opened">
+      <div class="preloader" style="display: none;"></div>
+      <!-- Header Layout -->
+      <div class="mdk-header-layout js-mdk-header-layout" data-domfactory-upgraded="mdk-header-layout">
+        
+              <app-header></app-header>
+
+               <!-- Header Layout Content -->
+         <div class="mdk-header-layout__content">
+
+            
+              <router-outlet></router-outlet>
+              <app-menu></app-menu>
+            
+            <!-- // END header-layout__content -->
+      </div>
+      <!-- // END header-layout -->
+    </div>
+    <!-- // END drawer-layout -->
+     <!-- Sign Up Modal -->
+     <div id="modal-signup" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="d-flex" style="float: right;">
+                <button type="button"
+                     class="btn btn-close"
+                     data-dismiss="modal"
+                     aria-label="Close"
+                     style="font-size: 1.5rem;"
+                   ><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+                  <div class="px-3">
+                      <div class="d-flex justify-content-center mt-2 mb-4 navbar-light">
+                          <a href="#" class="navbar-brand" style="min-width: 0">
+                              <!--img class="navbar-brand-icon" src="./Modals_files/stack-logo-blue.svg" width="25" alt="FlowDash"-->
+                              <span>{{modaltitle}}</span>
+                          </a>
+                      </div>
+                      <p style="text-align: center;font-size: 16px;font-weight: bold;margin-top: 16px;">{{message}}</p>
+                      <form *ngIf="showFrom" action="#">
+                          <div class="form-group">
+                              <label for="username">Name<sup style="color:red">*</sup> :</label>
+                              <input [(ngModel)]="pShortName" name="pShortName" class="form-control" type="text" required="" placeholder="My website" requred="true">
+                          </div>
+                          <div class="form-group">
+                              <label for="email">Website Url<sup style="color:red">*</sup> :</label>
+                              <input class="form-control" [(ngModel)]="pUrl" name="pUrl" type="text" required="" placeholder="https://example.com" requred="true">
+                          </div>
+                          <div class="form-group">
+                              <label for="password">Description<sup style="color:red">*</sup> :</label>
+                              <input class="form-control" [(ngModel)]="pDescription"  name="pDescription" type="text" required=""  placeholder="Website desctiption" requred="true">
+                          </div>
+                          <div class="form-group">
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" id="terms">
+                                  <label class="custom-control-label" for="terms">I accept <a target="_blank" href="http://223labs.ringlerr.com/documentation/docs/legal/terms-and-conditions">Terms and Conditions</a></label>
+                              </div>
+                          </div>
+                          <div class="form-group text-center">
+                              <button class="btn btn-primary" type="button" (click)="addWebsite()">Save</button>
+                          </div>
+                      </form>
+                      <div *ngIf="!showFrom && !showLowRepFrom" style="text-align: center;padding: 12px 42px;">
+                        <img *ngIf="showLoading" src="./assets/loading.gif" alt="Loading" width="200" class="auth-logo-light">
+                        <div *ngIf="!showLoading">
+                           <p style="text-align: center;font-size: 16px;font-weight: bold;">Your website score is</p>
+                           <p style="text-align: center;font-size: 68px;font-weight: bold;padding: 32px;color: aqua;">{{repScore}}</p>
+                         </div>
+                      </div>  
+                      <!--low rep form-->
+                      <form *ngIf="showLowRepFrom" action="#">
+                        <div class="form-group">
+                            <label for="username">Business Name<sup style="color:red">*</sup> :</label>
+                            <input [(ngModel)]="businessName" name="businessName" class="form-control" type="text" required="" placeholder="My Business" requred="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Phone Number<sup style="color:red">*</sup> :</label>
+                            <input class="form-control" [(ngModel)]="phone_number" name="phone_number" type="text" required="" placeholder="+91xxxxxxxxx" requred="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Work Email<sup style="color:red">*</sup> :</label>
+                            <div class="form-row">
+                                <input class="form-control col-sm-6" [(ngModel)]="workEmail"  name="workEmail" type="text" required=""  placeholder="user@domian.com" requred="true">
+                                <label class="col-sm-6 col-form-label"  for="name">@{{domain}}</label>
+                             </div>
+                        </div>
+                        
+                          <div class="form-group">
+                       <img [src]="imageSrc" *ngIf="imageSrc" style="height:150px; width:200px">
+                       </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="terms">
+                                <label class="custom-control-label" for="terms">I accept <a target="_blank" href="http://223labs.ringlerr.com/documentation/docs/legal/terms-and-conditions">Terms and Conditions</a></label>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary" type="button" (click)="addProofWebsite()">Save</button>
+                        </div>
+                    </form>
+                      <!--low rep form-->
+                  </div>
+              </div> <!-- // END .modal-body -->
+          </div> <!-- // END .modal-content -->
+      </div> <!-- // END .modal-dialog -->
+  </div> <!-- // END .modal -->
+
+   </body>
+</html>

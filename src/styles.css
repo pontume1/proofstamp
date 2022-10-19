@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
+
+body {
+  margin: auto;
+}
+.ps__rail-y ps--clicking {
+  display: none;
+}
+.ag-header-cell-label {
+  justify-content: center;
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  display: none;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+}
+
+.btn-close {
+  position: absolute;
+  font-size: 1.5rem;
+  right: 5px;
+  z-index: 99999999;
+}
+
+.pointer {
+  cursor: pointer;
+}
